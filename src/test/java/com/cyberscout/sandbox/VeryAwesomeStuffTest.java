@@ -45,6 +45,6 @@ public class VeryAwesomeStuffTest {
     @Test
     public void testThatSomethingAwesomeIsDone() {
 
-        assertEquals(this.expected, new VeryAwesomeStuff().doAwesomeStuff(this.input));
+        assertEquals(this.expected, new VeryAwesomeStuff().doSomethingAwesome(this.input));
     }
 }
