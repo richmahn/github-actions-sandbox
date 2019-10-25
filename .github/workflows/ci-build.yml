@@ -26,6 +26,7 @@ jobs:
 
     runs-on: ubuntu-latest
     if: contains(github.ref, 'refs/tags/v')
+    needs: build
 
     steps:
       - name: Download artifact
