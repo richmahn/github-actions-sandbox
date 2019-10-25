@@ -51,8 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./github-actions-sandbox/github-actions-sandbox-${{ github.ref }}.jar
-          asset_name: github-actions-sandbox-${{ github.ref }}.jar
+          asset_path: ./github-actions-sandbox/github-actions-sandbox-*.jar
           asset_content_type: application/java-archive
       - name: Display release artifact location
         shell: bash
