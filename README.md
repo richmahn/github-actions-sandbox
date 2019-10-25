@@ -8,8 +8,8 @@ Wow, sweet. :confetti_ball: :tada:
 
 ### On any push to any branch...
 
-1. Run 'gradle build'
-2. Attach the artifact to the workflow
+1. Run 'gradle build' :heavy_check_mark:
+2. Attach the artifact to the workflow :heavy_check_mark:
 3. Upload the artifact to Bintray
 
 ### On a push to a tag of the form 'vX.Y.Z'...

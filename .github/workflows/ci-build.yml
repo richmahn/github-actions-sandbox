@@ -21,3 +21,35 @@ jobs:
       with:
         name: libs
         path: build/libs
+
+  release:
+
+    runs-on: ubuntu-latest
+    if: contains(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Download artifact
+        id: download_artifact
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: libs
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload release artifacts
+        id: upload_release_artifacts
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./libs
+          asset_name: libs-${{ github.ref }}
+          asset_content_type: application/zip
