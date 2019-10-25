@@ -19,7 +19,7 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: libs
+        name: github-actions-sandbox
         path: build/libs
 
   release:
@@ -29,30 +29,33 @@ jobs:
     needs: build
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1.0.0
       - name: Download artifact
         id: download_artifact
         uses: actions/download-artifact@v1.0.0
         with:
-          name: libs.zip
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload release artifacts
-        id: upload_release_artifacts
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./libs.zip
-          asset_name: libs-${{ github.ref }}.zip
-          asset_content_type: application/zip
+          name: github-actions-sandbox
+      - name: Let's see what we got
+        shell: bash
+        run: |
+          ls -al
+          ls -al github-actions-sandbox/
+#      - name: Create release
+#        id: create_release
+#        uses: actions/create-release@v1.0.0
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          tag_name: ${{ github.ref }}
+#          release_name: Release ${{ github.ref }}
+#          draft: false
+#          prerelease: false
+#      - name: Upload release artifacts
+#        id: upload_release_artifacts
+#        uses: actions/upload-release-asset@v1.0.1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: ./libs.zip
+#          asset_name: libs-${{ github.ref }}.zip
+#          asset_content_type: application/zip
