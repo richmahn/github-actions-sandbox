@@ -32,7 +32,7 @@ jobs:
         id: download_artifact
         uses: actions/download-artifact@v1.0.0
         with:
-          name: libs
+          name: libs.zip
       - name: Create release
         id: create_release
         uses: actions/create-release@v1.0.0
@@ -50,6 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./libs
-          asset_name: libs-${{ github.ref }}
+          asset_path: ./libs.zip
+          asset_name: libs-${{ github.ref }}.zip
           asset_content_type: application/zip
