@@ -34,28 +34,27 @@ jobs:
         uses: actions/download-artifact@v1.0.0
         with:
           name: github-actions-sandbox
-      - name: Let's see what we got
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload release artifacts
+        id: upload_release_artifacts
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./github-actions-sandbox/github-actions-sandbox-${{ github.ref }}.jar
+          asset_name: github-actions-sandbox-${{ github.ref }}.jar
+          asset_content_type: application/java-archive
+      - name: Display release artifact location
         shell: bash
         run: |
-          ls -al
-          ls -al github-actions-sandbox/
-#      - name: Create release
-#        id: create_release
-#        uses: actions/create-release@v1.0.0
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Release ${{ github.ref }}
-#          draft: false
-#          prerelease: false
-#      - name: Upload release artifacts
-#        id: upload_release_artifacts
-#        uses: actions/upload-release-asset@v1.0.1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: ./libs.zip
-#          asset_name: libs-${{ github.ref }}.zip
-#          asset_content_type: application/zip
+          echo Release artifact available at ${{ steps.upload_release_artifacts.outputs.browser_download_url }}
