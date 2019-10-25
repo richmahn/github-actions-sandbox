@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/chekcout@v1.0.0
+        uses: actions/checkout@v1.0.0
       - name: Download artifact
         id: download_artifact
         uses: actions/download-artifact@v1.0.0
