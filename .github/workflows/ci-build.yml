@@ -34,26 +34,37 @@ jobs:
         uses: actions/download-artifact@v1.0.0
         with:
           name: github-actions-sandbox
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload release artifacts
-        id: upload_release_artifacts
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./github-actions-sandbox/github-actions-sandbox-*.jar
-          asset_content_type: application/java-archive
-      - name: Display release artifact location
+      - name: Extract version
+        id: extract_version
         shell: bash
         run: |
-          echo Release artifact available at ${{ steps.upload_release_artifacts.outputs.browser_download_url }}
+          version=$(ls github-actions-sandbox/github-actions-sandbox-*.jar | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+          echo "::set-env name=artifact_version::$version"
+      - name: Check version
+        id: check_version
+        shell: bash
+        run: |
+          echo Version = $artifact_version
+#      - name: Create release
+#        id: create_release
+#        uses: actions/create-release@v1.0.0
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          tag_name: ${{ github.ref }}
+#          release_name: Release ${{ github.ref }}
+#          draft: false
+#          prerelease: false
+#      - name: Upload release artifacts
+#        id: upload_release_artifacts
+#        uses: actions/upload-release-asset@v1.0.1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: ./github-actions-sandbox/github-actions-sandbox-*.jar
+#          asset_content_type: application/java-archive
+#      - name: Display release artifact location
+#        shell: bash
+#        run: |
+#          echo Release artifact available at ${{ steps.upload_release_artifacts.outputs.browser_download_url }}
