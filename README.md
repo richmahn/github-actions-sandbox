@@ -8,12 +8,12 @@ Wow, sweet. :confetti_ball: :tada:
 
 ### On any push to any branch...
 
-1. Run 'gradle build' :heavy_check_mark:
-2. Attach the artifact to the workflow :heavy_check_mark:
-3. Upload the artifact to Bintray
+1. Run 'gradle build' :white_check_mark:
+2. Attach the artifact to the workflow :white_check_mark:
+3. Upload the artifact to Bintray :question:
 
 ### On a push to a tag of the form 'vX.Y.Z'...
 
-1. Download the artifact
-2. Create a GitHub release
-3. Attach the library (.jar file) to the release
+1. Download the artifact :white_check_mark:
+2. Create a GitHub release :white_check_mark:
+3. Attach the library (.jar file) to the release :white_check_mark:
