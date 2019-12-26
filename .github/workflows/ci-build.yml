@@ -1,6 +1,9 @@
 name: CI Build
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - v*.*.*
 
 jobs:
   build:
@@ -16,26 +19,3 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: github-actions-sandbox
-        path: build/libs
-
-  release:
-
-    runs-on: ubuntu-latest
-    if: contains(github.ref, 'refs/tags/v')
-    needs: build
-
-    steps:
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false

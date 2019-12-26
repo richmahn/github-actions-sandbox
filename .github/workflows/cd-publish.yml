@@ -1,8 +1,9 @@
 name: CD Publish Release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - v*.*.*
 
 jobs:
   publish:
@@ -18,3 +19,20 @@ jobs:
           java-version: 1.8
       - name: Publish with Gradle
         run: ./gradlew cdPublish
+
+  release:
+
+    runs-on: ubuntu-latest
+    needs: publish
+
+    steps:
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
