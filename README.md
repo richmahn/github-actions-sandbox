@@ -6,14 +6,16 @@ Wow, sweet. :confetti_ball: :tada:
 
 ## CI/CD Process
 
-### On any push to any branch...
+### On push to any branch (unless it's a tag)...
 
-1. Run 'gradle build' :white_check_mark:
-2. Attach the artifact to the workflow :white_check_mark:
-3. Upload the artifact to Bintray :question:
+1. :white_check_mark: Run 'gradle build'
 
 ### On a push to a tag of the form 'vX.Y.Z'...
 
-1. Download the artifact :white_check_mark:
-2. Create a GitHub release :white_check_mark:
-3. Attach the library (.jar file) to the release :white_check_mark:
+1. Perform a publish:
+    1. :white_check_mark: Build and check
+    2. :white_check_mark: Create Bintray release
+    3. :white_check_mark: Upload the artifact to Bintray
+    4. :x: Upload the artifacts to GitHub Packages
+2. :white_check_mark: Create a GitHub release
+3. :x: Attach the library (.jar file) to the release
