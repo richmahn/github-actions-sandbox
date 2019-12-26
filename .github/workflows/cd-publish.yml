@@ -2,6 +2,8 @@ name: CD Publish Release
 
 on:
   push:
+    branches:
+      - master
     tags:
       - v*.*.*
 
@@ -18,6 +20,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Publish with Gradle
+        env:
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
         run: ./gradlew cdPublish
 
   release:
