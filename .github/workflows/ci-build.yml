@@ -1,6 +1,9 @@
 name: CI Build
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - *
 
 jobs:
   build:
@@ -9,9 +12,9 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v1.0.0
+      uses: actions/checkout@v2.0.0
     - name: Set up JDK 1.8
-      uses: actions/setup-java@v1.1.0
+      uses: actions/setup-java@v1.2.0
       with:
         java-version: 1.8
     - name: Build with Gradle
@@ -29,17 +32,6 @@ jobs:
     needs: build
 
     steps:
-      - name: Download artifact
-        id: download_artifact
-        uses: actions/download-artifact@v1.0.0
-        with:
-          name: github-actions-sandbox
-      - name: Extract version
-        id: extract_version
-        shell: bash
-        run: |
-          version=$(ls github-actions-sandbox/github-actions-sandbox-*.jar | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
-          echo "::set-env name=artifact_version::$version"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1.0.0
@@ -50,17 +42,3 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload release artifacts
-        id: upload_release_artifacts
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./github-actions-sandbox/github-actions-sandbox-${{ env.artifact_version }}.jar
-          asset_name: github-actions-sandbox-${{ env.artifact_version }}.jar
-          asset_content_type: application/java-archive
-      - name: Display release artifact location
-        shell: bash
-        run: |
-          echo Release artifact available at ${{ steps.upload_release_artifacts.outputs.browser_download_url }}

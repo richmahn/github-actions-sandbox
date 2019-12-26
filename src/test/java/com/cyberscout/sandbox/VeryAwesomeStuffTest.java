@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class VeryAwesomeStuffTest {
 
-    @Parameters(name = "doAwesomeStuff({0}) == {1}")
+    @Parameters(name = "doSomethingAwesome({0}) == {1}")
     public static Iterable<Object[]> testData() {
 
         //@formatter:off
