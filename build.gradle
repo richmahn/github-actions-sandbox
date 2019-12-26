@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.cyberscout.sandbox'
-version '1.2.3'
+version '1.2.4'
 
 sourceCompatibility = 1.8
 
@@ -88,6 +88,9 @@ bintray {
         version {
             name = project.version
             released = new Date()
+            gpg {
+                sign = true
+            }
         }
     }
 }

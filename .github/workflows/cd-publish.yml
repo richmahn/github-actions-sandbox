@@ -2,8 +2,6 @@ name: CD Publish Release
 
 on:
   push:
-    branches:
-      - master
     tags:
       - v*.*.*
 
