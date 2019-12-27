@@ -1,6 +1,8 @@
 # GitHub Actions Sandbox
 
 ![](https://github.com/CyberScout/github-actions-sandbox/workflows/CI%20Build/badge.svg)
+:arrow_right:
+![](https://github.com/CyberScout/github-actions-sandbox/workflows/CD%20Publish%20Release/badge.svg)
 
 Wow, sweet. :confetti_ball: :tada:
 
@@ -16,6 +18,7 @@ Wow, sweet. :confetti_ball: :tada:
     1. :white_check_mark: Build and check
     2. :white_check_mark: Create Bintray release
     3. :white_check_mark: Upload the artifact to Bintray
-    4. :x: Upload the artifacts to GitHub Packages
+    4. :white_check_mark: Upload the artifacts to GitHub Packages
 2. :white_check_mark: Create a GitHub release
-3. :x: Attach the library (.jar file) to the release
+3. :no_entry_sign: ~~Attach the library (.jar file) to the release~~ Not needed,
+   since the artifacts are in both GitHub Packages and JCenter
