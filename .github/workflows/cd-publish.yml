@@ -21,6 +21,8 @@ jobs:
         env:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
+          GH_USER: ${{ secrets.GH_USER }}
+          GH_PA_TOKEN: ${{ secrets.GH_PA_TOKEN }}
         run: ./gradlew cdPublish
 
   release:
