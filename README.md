@@ -1,8 +1,7 @@
 # GitHub Actions Sandbox
 
-![](https://github.com/CyberScout/github-actions-sandbox/workflows/CI%20Build/badge.svg)
-:arrow_right:
-![](https://github.com/CyberScout/github-actions-sandbox/workflows/CD%20Publish%20Release/badge.svg)
+![Continuous Integration](https://github.com/CyberScout/github-actions-sandbox/workflows/CI%20Build/badge.svg)
+![Continuous Delivery](https://github.com/CyberScout/github-actions-sandbox/workflows/CD%20Publish%20Release/badge.svg)
 
 Wow, sweet. :confetti_ball: :tada:
 
