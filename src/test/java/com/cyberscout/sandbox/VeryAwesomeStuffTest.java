@@ -19,13 +19,13 @@ public class VeryAwesomeStuffTest {
 
         //@formatter:off
         return Arrays.asList(new Object[][] {
-                { 1, "0x1" },
-                { 20, "0x14" },
-                { 42, "0x2A" },
-                { 1_357, "0x54D" },
-                { 51_966, "0xCAFE" },
-                { 789_514, "0xC0C0A" },
-                { 12_648_430, "0xC0FFEE" },
+                { 1, "0x1 is awesome!" },
+                { 20, "0x14 is awesome!" },
+                { 42, "0x2A is awesome!" },
+                { 1_357, "0x54D is awesome!" },
+                { 51_966, "0xCAFE is awesome!" },
+                { 789_514, "0xC0C0A is awesome!" },
+                { 12_648_430, "0xC0FFEE is awesome!" },
         });
         //@formatter:on
     }
