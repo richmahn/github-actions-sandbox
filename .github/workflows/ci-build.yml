@@ -6,8 +6,7 @@ on:
       - '*'
     tags:
       - v*.*.*
-  release:
-    types: [published, created, prereleased]
+  release
 
 jobs:
   build:
