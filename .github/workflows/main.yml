@@ -78,7 +78,7 @@ jobs:
       run: echo "ONLY HERE IF RELEASE"
 
     - name: IS RELEASE other way
-      if: "github.event.release"
+      if: "github.event.release.prerelease"
       run: |
         echo "ONLY RELEASE other way"
         echo ${{ github.event.release.prerelease }}
