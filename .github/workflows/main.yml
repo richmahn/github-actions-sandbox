@@ -6,7 +6,7 @@ name: RICH
 # events but only for the master branch
 on: 
   push:
-    branch:
+    branches:
       - release/dcs/v*
       - master
     tags:
