@@ -61,14 +61,6 @@ jobs:
         MATRIX_CONTEXT: ${{ toJson(matrix) }}
       run: echo "$MATRIX_CONTEXT"
 
-    - name: IS TAG
-      if: contains(github.ref, "tag")
-      run: echo "ONLY HERE IF TAG"
-
-    - name: IS RELEASE
-      if: contains(github.ref, "release")
-      run: echo "ONLY HERE IF RELEASE"
-
     - name: IS PRERELEASE
       if: "github.event.release.prerelease"
       run: echo "ONLY HERE IF RELEASE"
