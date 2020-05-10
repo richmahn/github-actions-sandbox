@@ -84,8 +84,6 @@ jobs:
         echo ${{ github.event.release.prerelease }}
         echo $pre_release
         echo $login
-        echo $GIT_CONTEXT
       env:
-        GIT_CONTEXT: ${{ tjson(github) }}
         pre_release: ${{ github.event.release.prerelease }}
         login: ${{ github.event.release.created_at }}
