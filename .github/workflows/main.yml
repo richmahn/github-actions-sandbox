@@ -91,7 +91,7 @@ jobs:
       run: echo "${BRANCH_NAME}"
     
     - name: DOCKER_TAG to tag name
-      if: "contains(github.ref, '/tags/')"
+      if: contains(github.ref, '/tags/')
       run: |
         TAG_NAME=${GITHUB_REF##*/}
         echo "BRANCH=${BRANCH_NAME}"
