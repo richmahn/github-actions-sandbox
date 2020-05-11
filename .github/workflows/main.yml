@@ -74,7 +74,10 @@ jobs:
         pre_release: ${{ github.event.release.prerelease }}
         login: ${{ github.event.release.created_at }}
 
-    # Runs a single command using the runners shell
     - name: GITHUB_REF is TAG
       if: "contains(github.ref, 'tag')"
+      run: echo ${GITHUB_REF}
+
+    - name: GITHUB_REF is BRANCH
+      if: "contains(github.ref, 'branch')"
       run: echo ${GITHUB_REF}
