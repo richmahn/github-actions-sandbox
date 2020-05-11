@@ -83,3 +83,16 @@ jobs:
     - name: GITHUB_REF is BRANCH
       if: "contains(github.ref, 'branch')"
       run: echo ${GITHUB_REF}
+
+    - uses: nelonoel/branch-name@v1
+
+    - name: DOCKER_TAG to branch name
+      if: "github.ref == 'refs/heads/${BRANCH_NAME}'"
+      run: echo "${BRANCH_NAME}"
+    
+    - name: DOCKER_TAG to tag name
+      if: "contains(github.ref, '/tags/')"
+      run: |
+        TAG_NAME=${GITHUB_REF##*/}
+        echo "BRANCH=${BRANCH_NAME}"
+        echo "TAG=${TAG_NAME}"
