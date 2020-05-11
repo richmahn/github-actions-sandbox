@@ -76,5 +76,5 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: GITHUB_REF is TAG
-      if: contains(github.ref, "tag")
+      if: "contains(github.ref, 'tag')"
       run: echo ${GITHUB_REF}
