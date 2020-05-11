@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: RICH JOSHUA
+name: DOCKER TAGS
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -11,8 +11,6 @@ on:
       - master
     tags:
       - v*-dcs
-  release:
-    types: [published, prereleased, created]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,10 +23,6 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: GITHUB_REF
-      run: echo ${GITHUB_REF}
 
     # Runs a single command using the runners shell
     - name: GITHUB_SHA
@@ -79,3 +73,8 @@ jobs:
       env:
         pre_release: ${{ github.event.release.prerelease }}
         login: ${{ github.event.release.created_at }}
+
+    # Runs a single command using the runners shell
+    - name: GITHUB_REF is TAG
+      if: contains(github.ref, "tag")
+      run: echo ${GITHUB_REF}
